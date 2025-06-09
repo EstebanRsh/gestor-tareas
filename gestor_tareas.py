@@ -35,6 +35,12 @@ def eliminar_tarea(indice):
     if 0 <= indice < len(tareas):
         tareas.pop(indice)
         guardar_tareas(tareas)
+def buscar_tareas(palabra):
+    tareas = cargar_tareas()
+    for i, tarea in enumerate(tareas):
+        if palabra.lower() in tarea["nombre"].lower():
+            estado = "✅" if tarea["completada"] else "❌"
+            print(f"{i + 1}. {tarea['nombre']} - {estado}")
 
 
 if __name__ == "__main__":
@@ -43,7 +49,8 @@ if __name__ == "__main__":
         print("2. Mostrar tareas")
         print("3. Marcar tarea como completada")
         print("4. Eliminar tarea")
-        print("5. Salir")
+        print("5. Buscar tarea")
+        print("0. Salir")
         opcion = input("Selecciona una opción: ")
 
         if opcion == "1":
@@ -60,6 +67,9 @@ if __name__ == "__main__":
             indice = int(input("Número de tarea a eliminar: ")) - 1
             eliminar_tarea(indice)
         elif opcion == "5":
+            palabra = input("Ingresa palabra clave: ")
+            buscar_tareas(palabra)
+        elif opcion == "0":
             break
         else:
             print("Opción inválida.")
