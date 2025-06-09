@@ -41,6 +41,12 @@ def buscar_tareas(palabra):
         if palabra.lower() in tarea["nombre"].lower():
             estado = "✅" if tarea["completada"] else "❌"
             print(f"{i + 1}. {tarea['nombre']} - {estado}")
+def mostrar_filtradas(completadas=True):
+    tareas = cargar_tareas()
+    for i, tarea in enumerate(tareas):
+        if tarea["completada"] == completadas:
+            estado = "✅" if tarea["completada"] else "❌"
+            print(f"{i + 1}. {tarea['nombre']} - {estado}")
 
 
 if __name__ == "__main__":
@@ -50,6 +56,8 @@ if __name__ == "__main__":
         print("3. Marcar tarea como completada")
         print("4. Eliminar tarea")
         print("5. Buscar tarea")
+        print("6. Mostrar solo completadas")
+        print("7. Mostrar solo pendientes")
         print("0. Salir")
         opcion = input("Selecciona una opción: ")
 
@@ -69,6 +77,10 @@ if __name__ == "__main__":
         elif opcion == "5":
             palabra = input("Ingresa palabra clave: ")
             buscar_tareas(palabra)
+        elif opcion == "6":
+            mostrar_filtradas(completadas=True)
+        elif opcion == "7":
+            mostrar_filtradas(completadas=False)
         elif opcion == "0":
             break
         else:
