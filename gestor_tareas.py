@@ -82,6 +82,7 @@ if __name__ == "__main__":
         elif opcion == "7":
             mostrar_filtradas(completadas=False)
         elif opcion == "0":
+            print("Guardando tareas...")
             break
         else:
             print("Opción inválida.")
