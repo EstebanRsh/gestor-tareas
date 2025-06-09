@@ -30,12 +30,19 @@ def completar_tarea(indice):
         tareas[indice]["completada"] = True
         guardar_tareas(tareas)
 
+def eliminar_tarea(indice):
+    tareas = cargar_tareas()
+    if 0 <= indice < len(tareas):
+        tareas.pop(indice)
+        guardar_tareas(tareas)
+
 
 if __name__ == "__main__":
     while True:
         print("\n1. Agregar tarea")
         print("2. Mostrar tareas")
         print("3. Marcar tarea como completada")
+        print("4. Eliminar tarea")
         print("5. Salir")
         opcion = input("Selecciona una opción: ")
 
@@ -48,6 +55,10 @@ if __name__ == "__main__":
             mostrar_tareas()
             indice = int(input("Número de tarea a completar: ")) - 1
             completar_tarea(indice)
+        elif opcion == "4":
+            mostrar_tareas()
+            indice = int(input("Número de tarea a eliminar: ")) - 1
+            eliminar_tarea(indice)
         elif opcion == "5":
             break
         else:
