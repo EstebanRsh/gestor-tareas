@@ -24,11 +24,19 @@ def mostrar_tareas():
         estado = "✅" if tarea["completada"] else "❌"
         print(f"{i + 1}. {tarea['nombre']} - {estado}")
 
+def completar_tarea(indice):
+    tareas = cargar_tareas()
+    if 0 <= indice < len(tareas):
+        tareas[indice]["completada"] = True
+        guardar_tareas(tareas)
+
+
 if __name__ == "__main__":
     while True:
         print("\n1. Agregar tarea")
         print("2. Mostrar tareas")
-        print("3. Salir")
+        print("3. Marcar tarea como completada")
+        print("5. Salir")
         opcion = input("Selecciona una opción: ")
 
         if opcion == "1":
@@ -37,6 +45,10 @@ if __name__ == "__main__":
         elif opcion == "2":
             mostrar_tareas()
         elif opcion == "3":
+            mostrar_tareas()
+            indice = int(input("Número de tarea a completar: ")) - 1
+            completar_tarea(indice)
+        elif opcion == "5":
             break
         else:
             print("Opción inválida.")
